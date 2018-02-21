@@ -189,7 +189,7 @@ while (count < len(grp)):
     raw = raw + 1
 
 raw=101
-count = 3
+count = 0
 while (count < len(mem)):
     #grp_cell="A"+str(raw)
     mem_cell="B"+str(raw)
