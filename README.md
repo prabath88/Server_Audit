@@ -11,7 +11,7 @@ these three file should be in same directory and script (main.py) should run as 
 prerequisites
 --------------
 
-1) You should install python Python 3.6.4 or latest
+1) You should install python Python 2.7.12 or latest
 
 2) You need to install pandas,openpyxl and xlsxwriter
 ---> pip install xlsxwriter

@@ -17,14 +17,14 @@ infile = open('avg', 'r')
 cpu_numbers = [float(line) for line in infile.readlines()]
 infile.close()
 cpu_mean = sum(cpu_numbers)/len(cpu_numbers)
-print(cpu_mean)
+#print(cpu_mean)
 
 
 infile = open('mem', 'r')
 mem_numbers = [float(line) for line in infile.readlines()]
 infile.close()
 mem_mean = sum(mem_numbers)/len(mem_numbers)
-print(mem_mean)
+#print(mem_mean)
 
 
 mon = datetime.datetime.now().strftime("%m")
@@ -62,22 +62,22 @@ memcell="C"+raw
 ws[cpucell] = str(cpu_mean)
 ws[memcell] = str(mem_mean)
 #----------------------------------------------------------------------------------------------------------------
-root_total=subprocess.check_output("df -h | grep /xvda1 | awk '{print $2}' | awk -FG '{print $1}'",shell=True)
+root_total=subprocess.check_output("df -h | grep root | awk '{print $2}' | awk -FG '{print $1}'",shell=True)
 root_t = float(root_total)
-print(root_t)
+#print(root_t)
 
-root_use=subprocess.check_output("df -h | grep /xvda1 | awk '{print $3}' | awk -FG '{print $1}'",shell=True)
+root_use=subprocess.check_output("df -h | grep root | awk '{print $3}' | awk -FG '{print $1}'",shell=True)
 root_u = float(root_use)
-print(root_u)
+#print(root_u)
 
 
-boot_total=subprocess.check_output("df -h | grep udev | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
+boot_total=subprocess.check_output("df -h | grep boot | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
 boot_t = float(boot_total)/1024
-print(boot_t)
+#print(boot_t)
 
-boot_use=subprocess.check_output("df -h | grep udev | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
+boot_use=subprocess.check_output("df -h | grep boot | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
 boot_u = float(boot_use)/1024
-print(boot_u)
+#print(boot_u)
 
 
 if month == '01':
