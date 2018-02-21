@@ -3,7 +3,7 @@
 
 rm avg Employees group-members-tmp Groups groups-tmp mem Members rr User-groups Usernames -rf
 
-for file in $(ls -la /var/log/sysstat/* | grep sa[0-9] | awk '{print $9}')
+for file in $(ls -la /var/log/sa/* | grep sa[0-9] | awk '{print $9}')
 do
         sar -f $file | head -n 1
         sar -u -f $file | grep Average: | awk -F " " '{sum = (100 - $8) } END { print sum "%" }'| awk -F% '{ print $1 }' >> avg
