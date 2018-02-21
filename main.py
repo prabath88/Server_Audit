@@ -62,20 +62,20 @@ memcell="C"+raw
 ws[cpucell] = str(cpu_mean)
 ws[memcell] = str(mem_mean)
 #----------------------------------------------------------------------------------------------------------------
-root_total=subprocess.check_output("df -h | grep root | awk '{print $2}' | awk -FG '{print $1}'",shell=True)
+root_total=subprocess.check_output("df -h | grep -sw '/' | awk '{print $1}' | awk -FG '{print $1}'",shell=True)
 root_t = float(root_total)
 #print(root_t)
 
-root_use=subprocess.check_output("df -h | grep root | awk '{print $3}' | awk -FG '{print $1}'",shell=True)
+root_use=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | awk -FG '{ print $1}'",shell=True)
 root_u = float(root_use)
 #print(root_u)
 
 
-boot_total=subprocess.check_output("df -h | grep boot | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
+boot_total=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
 boot_t = float(boot_total)/1024
 #print(boot_t)
 
-boot_use=subprocess.check_output("df -h | grep boot | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
+boot_use=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
 boot_u = float(boot_use)/1024
 #print(boot_u)
 
