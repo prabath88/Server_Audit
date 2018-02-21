@@ -13,8 +13,12 @@ prerequisites
 
 1) You should install python Python 3.6.4 or latest
 
+2) You need to install pandas,openpyxl and xlsxwriter
+---> pip install xlsxwriter
+---> pip install pandas
+---> pip install openpyxl
 
-2) You should install sysstat on your server
+3) You should install sysstat on your server
 ---> yum install sysstat -y
 
 Open “/etc/default/sysstat” using your favorite file editor and change ENABLED=”false” to ENABLED=”true”
