@@ -10,7 +10,7 @@ try:
     msg=subprocess.check_output("sudo pip3.6 install xlsxwriter",shell=True);
     msg=subprocess.check_output("sudo pip3.6 install pandas",shell=True);
     msg=subprocess.check_output("sudo pip3.6 install openpyxl",shell=True);
-    
+    sar_path="rpm" 
 except:
     print ("Error ...! installing python3 , setup continue with different settings")
     sar_path="deb"
@@ -107,11 +107,11 @@ root_u = float(root_use)
 
 
 
-boot_total=subprocess.check_output("df -h | grep -sw '/sys/fs/cgroup' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
+boot_total=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
 boot_t = float(boot_total)/1024
 
 
-boot_use=subprocess.check_output("df -h | grep -sw '/sys/fs/cgroup' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
+boot_use=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
 boot_u = float(boot_use)/1024
 
 
