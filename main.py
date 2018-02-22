@@ -8,24 +8,25 @@ try:
     msg=subprocess.check_output("sudo yum install python36u -y",shell=True);
     msg=subprocess.check_output("sudo yum -y install python36u-pip",shell=True);
     msg=subprocess.check_output("sudo pip3.6 install xlsxwriter",shell=True);
-    msg=subprocess.check_output("sudo pip3.6 install pandas.",shell=True);
-    msg=subprocess.check_output("sudo pip3.6 install openpyxl.",shell=True);
+    msg=subprocess.check_output("sudo pip3.6 install pandas",shell=True);
+    msg=subprocess.check_output("sudo pip3.6 install openpyxl",shell=True);
     
 except:
     print ("Error ...! installing python3 , setup continue with different settings")
     sar_path="deb"
-try:
+    
 
+if sar_path == 'deb':
+ try:
    msg=subprocess.check_output("sudo apt-get install python3.5 -y",shell=True);
    msg=subprocess.check_output("sudo apt-get install -y python3-pip",shell=True);
    msg=subprocess.check_output("sudo pip3 install xlsxwriter",shell=True);
    msg=subprocess.check_output("sudo pip3 install pandas",shell=True);
    msg=subprocess.check_output("sudo pip3 install openpyxl",shell=True);
-   
-except:
-   print ("Error..! installing python3, setup terminate" )
+ except:
+   print ("Error..! installing python3, setup continue.. please install xlsxwriter,pandas and openpyxl manually" )
    sar_path="rpm"
-   sys.exit()
+   
 
 
 
@@ -106,11 +107,11 @@ root_u = float(root_use)
 
 
 
-boot_total=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
+boot_total=subprocess.check_output("df -h | grep -sw '/sys/fs/cgroup' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
 boot_t = float(boot_total)/1024
 
 
-boot_use=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
+boot_use=subprocess.check_output("df -h | grep -sw '/sys/fs/cgroup' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
 boot_u = float(boot_use)/1024
 
 
