@@ -25,9 +25,9 @@ Open “/etc/default/sysstat” using your favorite file editor and change ENABL
 
 ---> vi /etc/default/sysstat
 
-# Should sadc collect system activity informations? Valid values
-# are "true" and "false". Please do not put other values, they
-# will be overwritten by debconf!
+Should sadc collect system activity informations? Valid values
+are "true" and "false". Please do not put other values, they
+will be overwritten by debconf!
 ENABLED="true"
 
 
