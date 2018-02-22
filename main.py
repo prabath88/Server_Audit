@@ -176,7 +176,7 @@ infile = open('Members', 'r')
 mem = [str(line) for line in infile.readlines()]
 infile.close()
 
-raw=101
+raw=120
 count = 0
 while (count < len(grp)):
     grp_cell="A"+str(raw)
@@ -188,7 +188,7 @@ while (count < len(grp)):
     count = count + 1
     raw = raw + 1
 
-raw=101
+raw=120
 count = 0
 while (count < len(mem)):
     #grp_cell="A"+str(raw)
