@@ -1,13 +1,48 @@
-import xlsxwriter
-import os
-import pandas as pd
 import subprocess
+import os
+import sys
+
+sar_path=""
+
+try:
+    msg=subprocess.check_output("sudo yum install python36u -y",shell=True);
+    msg=subprocess.check_output("sudo yum -y install python36u-pip",shell=True);
+    msg=subprocess.check_output("sudo pip3.6 install xlsxwriter",shell=True);
+    msg=subprocess.check_output("sudo pip3.6 install pandas.",shell=True);
+    msg=subprocess.check_output("sudo pip3.6 install openpyxl.",shell=True);
+    
+except:
+    print ("Error ...! installing python3 , setup continue with different settings")
+    sar_path="deb"
+try:
+
+   msg=subprocess.check_output("sudo apt-get install python3.5 -y",shell=True);
+   msg=subprocess.check_output("sudo apt-get install -y python3-pip",shell=True);
+   msg=subprocess.check_output("sudo pip3 install xlsxwriter",shell=True);
+   msg=subprocess.check_output("sudo pip3 install pandas",shell=True);
+   msg=subprocess.check_output("sudo pip3 install openpyxl",shell=True);
+   
+except:
+   print ("Error..! installing python3, setup terminate" )
+   sar_path="rpm"
+   sys.exit()
+
+
+
+import xlsxwriter
+import pandas as pd
 import openpyxl
 from openpyxl import Workbook, worksheet, load_workbook
 import datetime 
 import time
 
-bashscript=subprocess.check_output("sh user-audit.sh",shell=True)
+
+if sar_path == 'deb':
+       bashscript=subprocess.check_output("sh ./init/user-audit_deb.sh ",shell=True)
+elif sar_path == 'rpm':
+       bashscript=subprocess.check_output("sh ./init/user-audit_rpm.sh ",shell=True)
+else:
+       print ("ll")
 
 wb = openpyxl.load_workbook("server.xlsx")
 ws = wb.active
@@ -64,20 +99,20 @@ ws[memcell] = str(mem_mean)
 #----------------------------------------------------------------------------------------------------------------
 root_total=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | awk -FG '{print $1}'",shell=True)
 root_t = float(root_total)
-#print(root_t)
+
 
 root_use=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | awk -FG '{ print $1}'",shell=True)
 root_u = float(root_use)
-#print(root_u)
+
 
 
 boot_total=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $2}' | awk -FM '{print $1}'",shell=True)
 boot_t = float(boot_total)/1024
-#print(boot_t)
+
 
 boot_use=subprocess.check_output("df -h | grep -sw '/boot' | awk '{print $3}' | awk -FM '{print $1}'",shell=True)
 boot_u = float(boot_use)/1024
-#print(boot_u)
+
 
 
 if month == '01':
