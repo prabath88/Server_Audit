@@ -62,7 +62,7 @@ memcell="C"+raw
 ws[cpucell] = str(cpu_mean)
 ws[memcell] = str(mem_mean)
 #----------------------------------------------------------------------------------------------------------------
-root_total=subprocess.check_output("df -h | grep -sw '/' | awk '{print $1}' | awk -FG '{print $1}'",shell=True)
+root_total=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | awk -FG '{print $1}'",shell=True)
 root_t = float(root_total)
 #print(root_t)
 
