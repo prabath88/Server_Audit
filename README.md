@@ -5,10 +5,15 @@ server health check report generator. This Audit report gives you monthly averag
 RUN the main.py 
 
 $python3.6 main.py
+
 Select your OS
+
 * (1) Debian Family OS
+
   (2) Redhat Family OS
+  
 select you os type 1 or 2, type enter for Debian:
+
 then you must select the correct OS type of your server. 
 
 it will update the server.xlsx file with correct information of the server. Every month you can run the same main.py script to update the information in server.xlsx
