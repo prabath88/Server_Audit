@@ -227,12 +227,8 @@ while (count < len(grp)):
 raw=120
 count = 0
 while (count < len(mem)):
-    #grp_cell="A"+str(raw)
     mem_cell="B"+str(raw)
-    #date_cell="C"+str(raw)
-    #ws[date_cell]=str(time.strftime("%Y-%m-%d"))
     ws[mem_cell]= str(mem[count])
-    #ws[grp_cell]= str(grp[count])
     count = count + 1
     raw = raw + 1
 
