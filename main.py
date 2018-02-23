@@ -2,31 +2,22 @@ import subprocess
 import os
 import sys
 
-sar_path=""
 
-try:
-    msg=subprocess.check_output("sudo yum install python36u -y",shell=True);
-    msg=subprocess.check_output("sudo yum -y install python36u-pip",shell=True);
-    msg=subprocess.check_output("sudo pip3.6 install xlsxwriter",shell=True);
-    msg=subprocess.check_output("sudo pip3.6 install pandas",shell=True);
-    msg=subprocess.check_output("sudo pip3.6 install openpyxl",shell=True);
-    sar_path="rpm" 
-except:
-    print ("Error ...! installing python3 , setup continue with different settings")
-    sar_path="deb"
-    
+print("Select your OS")
+print("* (1) Debian Family OS ")
+print("  (2) Redhat Family OS ")
+os_type=input('select you os type 1 or 2 , type enter for Debian : ')
 
-if sar_path == 'deb':
- try:
-   msg=subprocess.check_output("sudo apt-get install python3.5 -y",shell=True);
-   msg=subprocess.check_output("sudo apt-get install -y python3-pip",shell=True);
-   msg=subprocess.check_output("sudo pip3 install xlsxwriter",shell=True);
-   msg=subprocess.check_output("sudo pip3 install pandas",shell=True);
-   msg=subprocess.check_output("sudo pip3 install openpyxl",shell=True);
- except:
-   print ("Error..! installing python3, setup continue.. please install xlsxwriter,pandas and openpyxl manually" )
+
+if os_type == "1":
+   sar_path="deb"
+elif os_type == "2":
    sar_path="rpm"
-   
+elif os_type == "":
+   sar_path="deb"
+else:
+   print("Invalid option setup exit")
+   sys.exit()
 
 
 
@@ -43,28 +34,25 @@ if sar_path == 'deb':
 elif sar_path == 'rpm':
        bashscript=subprocess.check_output("sh ./init/user-audit_rpm.sh ",shell=True)
 else:
-       print ("ll")
+       print ("")
 
 wb = openpyxl.load_workbook("server.xlsx")
 ws = wb.active
 
-        
-infile = open('avg', 'r')
-cpu_numbers = [float(line) for line in infile.readlines()]
-infile.close()
-cpu_mean = sum(cpu_numbers)/len(cpu_numbers)
-#print(cpu_mean)
-
-
-infile = open('mem', 'r')
-mem_numbers = [float(line) for line in infile.readlines()]
-infile.close()
-mem_mean = sum(mem_numbers)/len(mem_numbers)
-#print(mem_mean)
-
-
-mon = datetime.datetime.now().strftime("%m")
-month = str(mon)
+try:
+ infile = open('avg', 'r')
+ cpu_numbers = [float(line) for line in infile.readlines()]
+ infile.close()
+ cpu_mean = sum(cpu_numbers)/len(cpu_numbers)
+ infile = open('mem', 'r')
+ mem_numbers = [float(line) for line in infile.readlines()]
+ infile.close()
+ mem_mean = sum(mem_numbers)/len(mem_numbers)
+ mon = datetime.datetime.now().strftime("%m")
+ month = str(mon)
+except:
+ print("invalid OS Type selected")
+ sys.exit()
 
 if month == '01':
    raw=str(15)
@@ -237,5 +225,5 @@ while (count < len(mem)):
 
 
 wb.save("server.xlsx")
-
+print("Report Generated successfully please find the report file here ./server.xlsx")
 clean=subprocess.check_output("rm avg  Employees  group-members-tmp  Groups  groups-tmp  mem  Members User-groups  Usernames -rf",shell=True)
