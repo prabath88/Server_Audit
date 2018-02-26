@@ -90,7 +90,7 @@ root_total=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | aw
 root_t = float(root_total)
 
 
-root_use=subprocess.check_output("df -h | grep -sw '/' | awk '{print $2}' | awk -FG '{ print $1}'",shell=True)
+root_use=subprocess.check_output("df -h | grep -sw '/' | awk '{print $3}' | awk -FG '{ print $1}'",shell=True)
 root_u = float(root_use)
 
 
